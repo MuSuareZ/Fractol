@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:31:02 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:56:45 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void		init_env(t_env *env)
 		return ;
 	env->iter = 1;
 	env->proj_num = 1;
-	env->p1 = (t_coord){300,HEIGHT-300};
-	env->p2 = (t_coord){WIDTH-300,HEIGHT-300};
+	env->zoom = 3;
+	env->p1 = (t_coord){300/env->zoom,HEIGHT-300/env->zoom};
+	env->p2 = (t_coord){WIDTH-300/env->zoom,HEIGHT-300/env->zoom};
 }
 
 static void		display_usage()
@@ -70,7 +71,7 @@ int		main(int ac, char **av)
 			return (-1);
 		koch_curve(env, env->p1, env->p2, env->iter);
 		mlx_key_hook(env->win, event_key, env);
-		//mlx_mouse_hook(env->win, event_mouse, env);
+		mlx_mouse_hook(env->win, event_mouse, env);
 		mlx_loop(env->mlx);
 	}
 	else

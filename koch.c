@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:31:41 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:06:18 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		draw_line(t_env *e, t_coord src, t_coord dst)
 	err[0] = (delta.x > delta.y ? delta.x : -delta.y) / 2;
 	while (src.x != dst.x || src.y != dst.y)
 	{
-		pixel_put(e, src.x, src.y, WHITE);
+		pixel_put(e, src.x, src.y, 0x6ffff);
 		err[1] = err[0];
 		if (err[1] > -delta.x)
 		{
@@ -69,8 +69,8 @@ void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times)
 	{
 		p3 = (t_coord){(2*p1.x+p2.x)/3,(2*p1.y+p2.y)/3};
 		p5 = (t_coord){(2*p2.x+p1.x)/3,(2*p2.y+p1.y)/3};
-		p4 = (t_coord){p3.x + (p5.x - p3.x)*cos(theta) + (p5.y - p3.y)*
-		sin(theta),p3.y - (p5.x - p3.x)*sin(theta) + (p5.y - p3.y)*cos(theta)};
+		p4 = (t_coord){p3.x+(p5.x-p3.x)*cos(theta) + (p5.y - p3.y)*
+		sin(theta),p3.y-(p5.x-p3.x)*sin(theta)+(p5.y - p3.y)*cos(theta)};
 		koch_curve(env, p1, p3, times-1);
 		koch_curve(env, p3, p4, times-1);
 		koch_curve(env, p4, p5, times-1);

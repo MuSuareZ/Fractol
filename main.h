@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:34:17 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:51:29 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ typedef struct	s_env
 	void	*win;
 	int		iter;
 	int		proj_num;
-	t_coord		p1;
-	t_coord		p2;
+	t_coord	p1;
+	t_coord	p2;
+	int		zoom;
 }				t_env;
 
 int		event_mouse(int button, int x, int y, t_env *e);
