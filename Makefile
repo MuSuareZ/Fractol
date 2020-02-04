@@ -6,13 +6,13 @@
 #    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/09 14:48:23 by msuarez-          #+#    #+#              #
-#    Updated: 2020/02/03 16:31:53 by msuarez-         ###   ########.fr        #
+#    Updated: 2020/02/04 16:16:44 by msuarez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = main.c key.c solve.c koch.c
+SRC = main.c key.c solve.c koch.c julia.c
 
 OBJECTS = $(subst .c,.o,$(SRC))
 

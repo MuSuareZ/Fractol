@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:53:48 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:19:39 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ int			event_mouse(int button, int x, int y, t_env *e)
 {
 	if (x && y && button == SCROLL_UP)
 	{
-		e->zoom++;
+		e->zoom += 1;
+	}
+	if (x && y && button == SCROLL_DOWN)
+	{
+		e->zoom -= 1;
 	}
 	draw_again(e);
 	return (0);
