@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:09:56 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:50:14 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_env
 	t_coord		p1;
 	t_coord		p2;
 	t_complex		julia;
+	t_complex		mandelbrot;
 	int		zoom;
 }					t_env;
 
@@ -57,6 +58,7 @@ int		event_key(int keycode, t_env *e);
 void	pixel_put(t_env *env, int x, int y, int color);
 void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times);
 void	julia_set(t_complex c, double radius, int n, t_env *env);
+void	mandelbrot_set(t_env *env, int iter);
 void	draw_again(t_env *e);
 
 #endif

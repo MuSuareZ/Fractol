@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:18:02 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/05 18:56:46 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@ void	draw_again(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
 	if (e->proj_num == 1)
+	{
 		koch_curve(e, e->p1, e->p2, e->iter);
+		koch_curve(e, (t_coord){500, 300},	// this one is inverted!
+					(t_coord){400, 500}, e->iter);
+
+		koch_curve(e, (t_coord){500, 300},	// this one is correct!
+					(t_coord){600, 500}, e->iter);
+	}
 	else if (e->proj_num == 2)
 		julia_set(e->julia, 2.0, e->iter, e);
-	// else if (e->proj_num == 3)
+	else
+		mandelbrot_set(e, e->iter);
 }
 
 static void		draw_line(t_env *e, t_coord src, t_coord dst)

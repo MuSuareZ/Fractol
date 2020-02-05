@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:06:41 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/05 18:48:03 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ static void		init_env(t_env *env)
 
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
-	env->iter = 2;
+	env->iter = 0;
 	env->julia.x = -0.8;
 	env->julia.y = 0.156;
+	env->mandelbrot.x = -0.8;
+	env->mandelbrot.y = 0.156;
 	env->zoom = 1;
-	env->p1 = (t_coord){100, HEIGHT - 100};
-	env->p2 = (t_coord){WIDTH - 100, HEIGHT - 100};
+	env->p1 = (t_coord){400, 500};
+	env->p2 = (t_coord){600, 500};
 }
 
 static void		display_usage(void)
