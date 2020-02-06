@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/05 17:50:14 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:08:40 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define SCROLL_DOWN 5
 # define UP 126
 # define DOWN 125
+# define D 2
+# define A 0
+# define W 13
+# define S 1
 # define WHITE 0xFFFFFF
 
 typedef struct	s_complex
@@ -46,11 +50,14 @@ typedef struct		s_env
 	void	*win;
 	int		iter;
 	int		proj_num;
+	t_complex		c_min;
+	t_complex		c_max;
+	t_coord		pos;
 	t_coord		p1;
 	t_coord		p2;
 	t_complex		julia;
 	t_complex		mandelbrot;
-	int		zoom;
+	double		zoom;
 }					t_env;
 
 int		event_mouse(int button, int x, int y, t_env *e);

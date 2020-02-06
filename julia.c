@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:27:35 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:23:09 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:49:17 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	julia_set(t_complex c, double radius, int n, t_env *env)
 				z1 = ft_add(ft_sqr(z0), c);
 				if (ft_mod(z1) > radius)
 				{
-					pixel_put(env, x, y, 0x000000);
+					// pixel_put(env, x*env->zoom, y*env->zoom, 0x000000);
 					break ;
 				}
 				z0 = z1;

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/05 18:48:03 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:08:16 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 static void		init_env(t_env *env)
 {
-	t_coord p1;
-	t_coord p2;
-
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
+	env->c_min.x = -2.5;
+	env->c_min.y = -2.0;
+	env->c_max.x = 1.5;
+	env->c_max.y = 2.0;
 	env->iter = 0;
 	env->julia.x = -0.8;
 	env->julia.y = 0.156;
 	env->mandelbrot.x = -0.8;
 	env->mandelbrot.y = 0.156;
-	env->zoom = 1;
-	env->p1 = (t_coord){400, 500};
-	env->p2 = (t_coord){600, 500};
+	env->zoom = 1.2;
 }
 
 static void		display_usage(void)
@@ -73,7 +72,7 @@ int				main(int ac, char **av)
 		if (env->win == (void *)0)
 			return (-1);
 		draw_again(env);
-		mlx_key_hook(env->win, event_key, env);
+		mlx_hook(env->win, 2, 0, event_key, env);
 		mlx_mouse_hook(env->win, event_mouse, env);
 		mlx_loop(env->mlx);
 	}

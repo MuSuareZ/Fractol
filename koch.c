@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/05 18:56:46 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:37:05 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	draw_again(t_env *e)
 	mlx_clear_window(e->mlx, e->win);
 	if (e->proj_num == 1)
 	{
-		koch_curve(e, e->p1, e->p2, e->iter);
-		koch_curve(e, (t_coord){500, 300},	// this one is inverted!
-					(t_coord){400, 500}, e->iter);
-
-		koch_curve(e, (t_coord){500, 300},	// this one is correct!
-					(t_coord){600, 500}, e->iter);
+		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},
+					(t_coord){400*e->zoom, 500*e->zoom}, e->iter);
+		koch_curve(e, (t_coord){400*e->zoom, 500*e->zoom},
+					(t_coord){500*e->zoom, 300*e->zoom}, e->iter);
+		koch_curve(e, (t_coord){500*e->zoom, 300*e->zoom},
+					(t_coord){600*e->zoom, 500*e->zoom}, e->iter);
 	}
 	else if (e->proj_num == 2)
 		julia_set(e->julia, 2.0, e->iter, e);
@@ -68,11 +68,11 @@ void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times)
 	theta = M_PI / 3;
 	if (times > 0)
 	{
-		p3 = (t_coord){(2 * p1.x + p2.x) / 3, (2 * p1.y + p2.y) / 3};
-		p5 = (t_coord){(2 * p2.x + p1.x) / 3, (2 * p2.y + p1.y) / 3};
-		p4 = (t_coord){p3.x + (p5.x - p3.x) * cos(theta) + (p5.y - p3.y)
-		* sin(theta), p3.y - (p5.x - p3.x) * sin(theta) + (p5.y - p3.y)
-		* cos(theta)};
+		p3 = (t_coord){((2 * p1.x + p2.x) / 3), ((2 * p1.y + p2.y) / 3)};
+		p5 = (t_coord){((2 * p2.x + p1.x) / 3), ((2 * p2.y + p1.y) / 3)};
+		p4 = (t_coord){(p3.x + (p5.x - p3.x) * cos(theta) + (p5.y - p3.y)
+		* sin(theta)), (p3.y - (p5.x - p3.x) * sin(theta) + (p5.y - p3.y)
+		* cos(theta))};
 		koch_curve(env, p1, p3, times - 1);
 		koch_curve(env, p3, p4, times - 1);
 		koch_curve(env, p4, p5, times - 1);
