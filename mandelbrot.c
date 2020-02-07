@@ -6,50 +6,78 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:22:39 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/06 16:07:52 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:59:16 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	mandelbrot_set(t_env *env, int iter)
+t_complex		first_z0value(t_complex z0)
 {
-	int i;
-	int iX;
-	int iY;
-    t_complex C;
-	t_complex Z0;
-	t_complex Z1;
-    double PixelWidth = (env->c_max.x - env->c_min.x) / WIDTH;
-    double PixelHeight = (env->c_max.y - env->c_min.y) / HEIGHT;
-    const double EscapeRadius = 2;
-    double ER2 = EscapeRadius * EscapeRadius;
-    for(iY = 0; iY < HEIGHT; iY++)
-    {
-        C.y = env->c_min.y + iY * PixelHeight;
-        if (fabs(C.y) < PixelHeight / 2) C.y = 0.0;
-        for(iX = 0; iX < WIDTH; iX++)
-        {         
-            C.x = env->c_min.x + iX * PixelWidth;
-            Z0.x = 0.0;
-            Z0.y = 0.0;
-            Z1.x = Z0.x * Z0.x;
-            Z1.y = Z0.y * Z0.y;
-            for (i = 0; i < iter && ((Z1.x + Z1.y) < ER2); i++)
-            {
-                Z0.y = 2 * Z0.x * Z0.y + C.y;
-                Z0.x = Z1.x - Z1.y + C.x;
-                Z1.x = Z0.x * Z0.x;
-                Z1.y = Z0.y * Z0.y;
-            };
-            if (i == iter)
-            { /*  interior of Mandelbrot set = black */
-				pixel_put(env, iX, iY, 0xff33cc);                 
-            }
-			else 
-            { /* exterior of Mandelbrot set = white */
-				//pixel_put(env, iX, iY, 0x000000);
-            };
-        }
-    }
+	z0.x = 0.0;
+	z0.y = 0.0;
+	return (z0);
+}
+
+t_complex		first_z1value(t_complex z0, t_complex z1)
+{
+	z1.x = z0.x * z0.x;
+	z1.y = z0.y * z0.y;
+	return (z1);
+}
+
+t_complex		last_z0value(t_complex z0, t_complex z1, t_complex c)
+{
+	z0.y = 2 * z0.x * z0.y + c.y;
+	z0.x = z1.x - z1.y + c.x;
+	return (z0);
+}
+
+void	colors(t_env *env, int xy[2], int i, int iter)
+{
+	if (i > iter)
+		pixel_put(env, xy[0], xy[1], 0x000000);
+	else if (i > iter * 0.6)
+		pixel_put(env, xy[0], xy[1], 0xff6600);
+	else if (i > iter * 0.5)
+		pixel_put(env, xy[0], xy[1], 0xffff00);
+	else if (i > iter * 0.4)
+		pixel_put(env, xy[0], xy[1], 0xffff33);
+	else if (i > iter * 0.3)
+		pixel_put(env, xy[0], xy[1], 0xffff80);
+	else if (i > iter * 0.2)
+		pixel_put(env, xy[0], xy[1], 0xffffb3);
+	else
+		pixel_put(env, xy[0], xy[1], 0x3399ff);
+}
+
+void			mandelbrot_set(t_env *env, int iter)
+{
+	int			i;
+	int			xy[2];
+	t_complex	c;
+	t_complex	z0;
+	t_complex	z1;
+
+	xy[1] = 0;
+	while (xy[1]++ < HEIGHT)
+	{
+		c.y = env->c_min.y + xy[1] * env->pixel_height;
+		if (fabs(c.y) < env->pixel_height / 2)
+			c.y = 0.0;
+		xy[0] = 0;
+		while (xy[0]++ < WIDTH)
+		{
+			c.x = env->c_min.x + xy[0] * env->pixel_width;
+			z0 = first_z0value(z0);
+			z1 = first_z1value(z0, z1);
+			i = 0;
+			while (i++ < iter && ((z1.x + z1.y) < env->esc_radius_squared))
+			{
+				z0 = last_z0value(z0, z1, c);
+				z1 = first_z1value(z0, z1);
+			}
+			colors(env, xy, i, iter);
+		}
+	}
 }

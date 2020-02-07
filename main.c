@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/06 16:08:16 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:19:52 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ static void		init_env(t_env *env)
 	env->julia.y = 0.156;
 	env->mandelbrot.x = -0.8;
 	env->mandelbrot.y = 0.156;
+	env->esc_radius_squared = 4;
+	env->pixel_height = (env->c_max.y - env->c_min.y) / HEIGHT;
+	env->pixel_width = (env->c_max.x - env->c_min.x) / WIDTH;
 	env->zoom = 1.2;
 }
 

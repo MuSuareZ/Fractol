@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:27:35 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/06 15:49:17 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:21:28 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ void	julia_set(t_complex c, double radius, int n, t_env *env)
 			}
 			if (i > n)
 				pixel_put(env, x, y, 0xff33cc);
+			else if (i > n * 0.7)
+				pixel_put(env, x, y, 0x333399);
+			else if (i > n * 0.6)
+                pixel_put(env, x, y, 0x666699);
 		}
 	}
 }

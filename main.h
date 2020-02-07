@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/06 16:08:40 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/07 16:21:09 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ typedef struct		s_env
 	t_coord		p2;
 	t_complex		julia;
 	t_complex		mandelbrot;
+	double		esc_radius_squared;
+	double		pixel_width;
+	double		pixel_height;
 	double		zoom;
 }					t_env;
 
