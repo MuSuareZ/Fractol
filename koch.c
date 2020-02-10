@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/07 16:21:23 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:55:45 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	draw_again(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
+	// make_me_black_senpai(e);
 	if (e->proj_num == 1)
 	{
 		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},

@@ -6,13 +6,13 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:27:35 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/07 13:21:28 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:35:57 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_complex	ft_add(t_complex a, t_complex b)
+static t_complex	ft_add(t_complex a, t_complex b)
 {
 	t_complex c;
 
@@ -21,7 +21,7 @@ t_complex	ft_add(t_complex a, t_complex b)
 	return (c);
 }
 
-t_complex	ft_sqr(t_complex a)
+static t_complex	ft_sqr(t_complex a)
 {
 	t_complex c;
 
@@ -30,19 +30,19 @@ t_complex	ft_sqr(t_complex a)
 	return (c);
 }
 
-double		ft_mod(t_complex a)
+static double		ft_mod(t_complex a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y));
 }
 
-t_complex	map_point(double radius, int x, int y)
+static t_complex	map_point(double radius, int x, int y, t_env *env)
 {
 	t_complex	c;
 	int			len;
 
 	len = (WIDTH < HEIGHT) ? WIDTH : HEIGHT;
-	c.x = 2 * radius * (x - WIDTH / 2.0) / len;
-	c.y = 2 * radius * (y - HEIGHT / 2.0) / len;
+	c.x = 2 * radius * (env->pos.x + x - WIDTH / 2.0) / len * env->zoom;
+	c.y = 2 * radius * (env->pos.y + y - HEIGHT / 2.0) / len * env->zoom;
 	return (c);
 }
 
@@ -60,23 +60,21 @@ void	julia_set(t_complex c, double radius, int n, t_env *env)
 		y = 0;
 		while (y++ <= HEIGHT)
 		{
-			z0 = map_point(radius, x, y);
+			z0 = map_point(radius, x, y, env);
 			i = 1;
 			while (i++ <= n)
 			{
 				z1 = ft_add(ft_sqr(z0), c);
 				if (ft_mod(z1) > radius)
-				{
-					// pixel_put(env, x*env->zoom, y*env->zoom, 0x000000);
 					break ;
-				}
 				z0 = z1;
 			}
+			// mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
 			if (i > n)
 				pixel_put(env, x, y, 0xff33cc);
 			else if (i > n * 0.7)
 				pixel_put(env, x, y, 0x333399);
-			else if (i > n * 0.6)
+			else if (i > n * 0.68)
                 pixel_put(env, x, y, 0x666699);
 		}
 	}

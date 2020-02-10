@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/07 15:19:52 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:52:34 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void		init_env(t_env *env)
 {
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
+	env->pos.x = 0;
+	env->pos.y = 0;
 	env->c_min.x = -2.5;
 	env->c_min.y = -2.0;
 	env->c_max.x = 1.5;
@@ -71,6 +73,7 @@ int				main(int ac, char **av)
 	if (ac == 2 && validate_input(env, av[1]) == 1)
 	{
 		init_env(env);
+		// init_img(env);
 		env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "msuarez- FRACTOL");
 		if (env->win == (void *)0)
 			return (-1);
