@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/10 18:30:21 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:33:17 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define A 0
 # define W 13
 # define S 1
+# define K 40
+# define L 37
 # define WHITE 0xFFFFFF
 
 typedef struct	s_complex
@@ -50,28 +52,24 @@ typedef struct		s_env
 	void	*win;
 	int		iter;
 	int		proj_num;
-	t_complex		c_min;
-	t_complex		c_max;
+	int		julia_var;
 	t_complex		julia;
-	t_complex		mandelbrot;
-	t_coord		pos;
+	t_complex		pos;
 	t_coord		p1;
 	t_coord		p2;
-	double		esc_radius_squared;
 	double		pixel_width;
 	double		pixel_height;
-	double		zoom;
+	long double		zoom;
 }					t_env;
 
 int		event_mouse(int button, int x, int y, t_env *e);
 int		event_key(int keycode, t_env *e);
+int		mouse_move(int x, int y, t_env *e);
 void	pixel_put(t_env *env, int x, int y, int color);
 void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times);
 void	julia_set(t_complex c, double radius, int n, t_env *env);
 void	mandelbrot_set(t_env *env, int iter);
 void	draw_again(t_env *e);
-void	paint_black(t_env *env);
-void	make_me_black_senpai(t_env *env);
-void	init_img(t_env *env);
+void	colors(t_env *env, int xy[2], int i, int iter);
 
 #endif

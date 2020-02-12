@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/10 18:55:45 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:26:02 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,15 @@
 void	draw_again(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
-	// make_me_black_senpai(e);
+	mlx_string_put(e->mlx, e->win, 10, 5, 0xFFFFFF, \
+						ft_strjoin("Number of iterations : ", \
+						ft_itoa(e->iter)));
+	mlx_string_put(e->mlx, e->win, 10, 35, 0xFFFFFF, \
+						ft_strjoin("Zoom level: x", \
+						ft_itoa(e->zoom)));
+	mlx_string_put(e->mlx, e->win, 10, 65, 0xFFFFFF, \
+						ft_strjoin("Julia Var: ", \
+						ft_itoa(e->julia_var)));					
 	if (e->proj_num == 1)
 	{
 		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},

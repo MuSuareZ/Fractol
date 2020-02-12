@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:27:35 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/10 18:35:57 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/12 11:30:48 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,18 @@ static t_complex	map_point(double radius, int x, int y, t_env *env)
 
 void	julia_set(t_complex c, double radius, int n, t_env *env)
 {
-	int				x;
-	int				y;
+	int				xy[2];
 	int				i;
 	t_complex		z0;
 	t_complex		z1;
 
-	x = 0;
-	while (x++ <= WIDTH)
+	xy[0] = 0;
+	while (xy[0]++ <= WIDTH)
 	{
-		y = 0;
-		while (y++ <= HEIGHT)
+		xy[1] = 0;
+		while (xy[1]++ <= HEIGHT)
 		{
-			z0 = map_point(radius, x, y, env);
+			z0 = map_point(radius, xy[0], xy[1], env);
 			i = 1;
 			while (i++ <= n)
 			{
@@ -69,13 +68,7 @@ void	julia_set(t_complex c, double radius, int n, t_env *env)
 					break ;
 				z0 = z1;
 			}
-			// mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
-			if (i > n)
-				pixel_put(env, x, y, 0xff33cc);
-			else if (i > n * 0.7)
-				pixel_put(env, x, y, 0x333399);
-			else if (i > n * 0.68)
-                pixel_put(env, x, y, 0x666699);
+			colors(env, xy, i, n);
 		}
 	}
 }

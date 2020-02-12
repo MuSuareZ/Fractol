@@ -6,36 +6,29 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:01:45 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/10 18:32:16 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:31:10 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-
-// void			init_img(t_env *env)
-// {
-// 	env->image = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-// 	env->buffer = (int *)mlx_get_data_addr(env->image, &env->pixel_bits,
-// 									&env->line_bytes, &env->endian);
-// 	env->line_bytes /= 4;
-// 	env->color = 11111111;
-// }
-
-// void			make_me_black_senpai(t_env *env)
-// {
-// 	int	x;
-// 	int	y;
-	
-// 	y = 0;
-// 	while (y++ < HEIGHT - 1000)
-// 	{
-// 		x = 0;
-// 		while (x++ < WIDTH)
-//     		env->buffer[(y * env->line_bytes) + x] = env->color;
-// 	}
-// 	mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
-// }
+void	colors(t_env *env, int xy[2], int i, int iter)
+{
+	if (i > iter)
+		pixel_put(env, xy[0], xy[1], 0xff6600);
+	else if (i > iter * 0.6)
+		pixel_put(env, xy[0], xy[1], 0xff6600);
+	else if (i > iter * 0.5)
+		pixel_put(env, xy[0], xy[1], 0xffff00);
+	else if (i > iter * 0.4)
+		pixel_put(env, xy[0], xy[1], 0xffff33);
+	else if (i > iter * 0.3)
+		pixel_put(env, xy[0], xy[1], 0xffff80);
+	else if (i > iter * 0.2)
+		pixel_put(env, xy[0], xy[1], 0xffffb3);
+	// else
+	// 	pixel_put(env, xy[0], xy[1], 0x3399ff);
+}
 
 void			pixel_put(t_env *env, int x, int y, int color)
 {
