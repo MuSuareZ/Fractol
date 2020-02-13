@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:01:45 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 15:24:50 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:39:03 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@ void	draw_again(t_env *e)
 						ft_itoa(e->zoom)));
 	mlx_string_put(e->mlx, e->win, 10, 65, 0xFFFFFF, \
 						ft_strjoin("Julia Var: ", \
-						ft_itoa(e->julia_var)));					
+						ft_itoa(e->julia_var)));
+	mlx_string_put(e->mlx, e->win, 10, 95, 0xFFFFFF, \
+						ft_strjoin("Mouse X: ", \
+						ft_itoa(e->mouse.x)));
+	mlx_string_put(e->mlx, e->win, 10, 125, 0xFFFFFF, \
+						ft_strjoin("Mouse Y: ", \
+						ft_itoa(e->mouse.y)));
 	if (e->proj_num == 1)
 	{
 		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},

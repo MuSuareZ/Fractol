@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 14:07:41 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 16:24:33 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,17 @@ int			event_key(int keycode, t_env *e)
 
 int		mouse_move(int x, int y, t_env *e)
 {
-	if (e->julia_var == 1)
+	if ((x >= 0 && x <= WIDTH) && (y >= 0 && y <= HEIGHT))
 	{
-		e->julia.x -= 0.001;
-		e->julia.y += 0.003;
+		e->mouse.x = x;
+		e->mouse.y = y;
+	}
+	if (e->julia_var == 1 && e->proj_num == 2)
+	{
+		e->mouse.x = -1.0 * x / (WIDTH / 2);
+		e->mouse.y = 1.0 * y / (HEIGHT / 2);
+		e->julia.x = e->mouse.x;
+		e->julia.y = e->mouse.y;
 	}
 	draw_again(e);
 	return (1);
