@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 14:36:01 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:25:50 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int				main(int ac, char **av)
 		mlx_hook(env->win, 2, 0, event_key, env);
 		mlx_hook(env->win, 6, 0, mouse_move, env);
 		mlx_hook(env->win, 4, 0, event_mouse, env);
-		// mlx_mouse_hook(env->win, event_mouse, env);
 		mlx_loop(env->mlx);
 	}
 	else

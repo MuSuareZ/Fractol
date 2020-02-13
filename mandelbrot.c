@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:22:39 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 14:57:15 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:21:55 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static t_mandel		calc(t_mandel z, t_mandel p)
 
 static	t_mandel	p_calc(t_env *env, t_mandel p, int xy[2])
 {
-	p.re = 2.0 * (xy[0] - WIDTH / 2) / (0.5 * env->zoom * WIDTH) + env->pos.x;
-	p.im = 2.0 * (xy[1] - HEIGHT / 2) / (0.5 * env->zoom * HEIGHT) + env->pos.y;
+	p.re = 2.5 * (xy[0] - WIDTH / 2) / (0.5 * env->zoom * WIDTH) + env->pos.x;
+	p.im = 2.5 * (xy[1] - HEIGHT / 2) / (0.5 * env->zoom * HEIGHT) + env->pos.y;
 	return (p);
 }
 

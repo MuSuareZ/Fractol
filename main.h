@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 14:52:23 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:18:46 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		event_key(int keycode, t_env *e);
 int		mouse_move(int x, int y, t_env *e);
 void	pixel_put(t_env *env, int x, int y, int color);
 void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times);
-void	julia_set(t_complex c, double radius, int n, t_env *env);
+void	julia_set(t_complex c, int n, t_env *env);
 void	mandelbrot_set(t_env *env, int iter);
 void	draw_again(t_env *e);
 void	colors(t_env *env, int xy[2], int i, int iter);

@@ -6,38 +6,11 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 13:56:14 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:24:56 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-void	draw_again(t_env *e)
-{
-	mlx_clear_window(e->mlx, e->win);
-	mlx_string_put(e->mlx, e->win, 10, 5, 0xFFFFFF, \
-						ft_strjoin("Number of iterations : ", \
-						ft_itoa(e->iter)));
-	mlx_string_put(e->mlx, e->win, 10, 35, 0xFFFFFF, \
-						ft_strjoin("Zoom level: x", \
-						ft_itoa(e->zoom)));
-	mlx_string_put(e->mlx, e->win, 10, 65, 0xFFFFFF, \
-						ft_strjoin("Julia Var: ", \
-						ft_itoa(e->julia_var)));					
-	if (e->proj_num == 1)
-	{
-		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},
-					(t_coord){400*e->zoom, 500*e->zoom}, e->iter);
-		koch_curve(e, (t_coord){400*e->zoom, 500*e->zoom},
-					(t_coord){500*e->zoom, 300*e->zoom}, e->iter);
-		koch_curve(e, (t_coord){500*e->zoom, 300*e->zoom},
-					(t_coord){600*e->zoom, 500*e->zoom}, e->iter);
-	}
-	else if (e->proj_num == 2)
-		julia_set(e->julia, 2.0, e->iter, e);
-	else
-		mandelbrot_set(e, e->iter);
-}
 
 static void		draw_line(t_env *e, t_coord src, t_coord dst)
 {
