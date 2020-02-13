@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:27:35 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/12 11:30:48 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:59:37 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_complex	map_point(double radius, int x, int y, t_env *env)
 	return (c);
 }
 
-void	julia_set(t_complex c, double radius, int n, t_env *env)
+void				julia_set(t_complex c, double radius, int n, t_env *env)
 {
 	int				xy[2];
 	int				i;

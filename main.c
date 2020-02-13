@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/12 17:43:49 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:36:01 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void		init_env(t_env *env)
 	env->julia_var = 0;
 	env->julia.x = -0.8;
 	env->julia.y = 0.156;
+	env->mandel.im = 0;
+	env->mandel.re = 0;
 	env->zoom = 1.2;
 }
 

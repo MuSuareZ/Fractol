@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/12 17:33:17 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:52:23 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,18 @@
 # define S 1
 # define K 40
 # define L 37
+# define R 15
 # define WHITE 0xFFFFFF
+
+typedef struct	s_mandel
+{
+	double	newre;
+	double	newim;
+	double	oldre;
+	double	oldim;
+	double	re;
+	double	im;
+}				t_mandel;
 
 typedef struct	s_complex
 {
@@ -53,12 +64,11 @@ typedef struct		s_env
 	int		iter;
 	int		proj_num;
 	int		julia_var;
+	t_mandel	mandel;
 	t_complex		julia;
 	t_complex		pos;
 	t_coord		p1;
 	t_coord		p2;
-	double		pixel_width;
-	double		pixel_height;
 	long double		zoom;
 }					t_env;
 

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/12 17:50:50 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:07:41 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int			event_key(int keycode, t_env *e)
 		e->pos.y += 0.3 / e->zoom;
 	if (keycode == S)
 		e->pos.y -= 0.3 / e->zoom;
+	if (keycode == R)
+	{
+		e->zoom = 1.2;
+		e->julia.x = -0.8;
+		e->julia.y = 0.156;
+	}
 	if (keycode == L && e->julia_var == 1)
 		e->julia_var = 0;
 	if (keycode == K && e->julia_var == 0)
@@ -46,8 +52,8 @@ int		mouse_move(int x, int y, t_env *e)
 {
 	if (e->julia_var == 1)
 	{
-		e->julia.x -= 0.1;
-		e->julia.y += 0.3;
+		e->julia.x -= 0.001;
+		e->julia.y += 0.003;
 	}
 	draw_again(e);
 	return (1);
