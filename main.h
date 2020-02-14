@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/14 17:33:05 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:35:10 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ typedef struct	s_complex
 	double y;
 }				t_complex;
 
-typedef struct	s_coord
-{
-	int	x;
-	int	y;
-}				t_coord;
-
 typedef struct	s_env
 {
 	void			*mlx;
@@ -67,8 +61,6 @@ typedef struct	s_env
 	t_complex		julia;
 	t_complex		pos;
 	t_complex		mouse;
-	t_coord			p1;
-	t_coord			p2;
 	long double		zoom;
 }				t_env;
 
