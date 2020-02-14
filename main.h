@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 15:34:10 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:24:28 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,30 @@ typedef struct	s_coord
 	int	y;
 }				t_coord;
 
-typedef struct		s_env
+typedef struct	s_env
 {
-	void	*mlx;
-	void	*win;
-	int		iter;
-	int		proj_num;
-	int		julia_var;
-	t_mandel	mandel;
+	void			*mlx;
+	void			*win;
+	int				iter;
+	int				proj_num;
+	int				julia_var;
+	t_mandel		mandel;
 	t_complex		julia;
 	t_complex		pos;
 	t_complex		mouse;
-	t_coord		p1;
-	t_coord		p2;
+	t_coord			p1;
+	t_coord			p2;
 	long double		zoom;
-}					t_env;
+}				t_env;
 
-int		event_mouse(int button, int x, int y, t_env *e);
-int		event_key(int keycode, t_env *e);
-int		mouse_move(int x, int y, t_env *e);
-void	pixel_put(t_env *env, int x, int y, int color);
-void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times);
-void	julia_set(t_complex c, int n, t_env *env);
-void	mandelbrot_set(t_env *env, int iter);
-void	draw_again(t_env *e);
-void	colors(t_env *env, int xy[2], int i, int iter);
+int				event_mouse(int button, int x, int y, t_env *e);
+int				event_key(int keycode, t_env *e);
+int				mouse_move(int x, int y, t_env *e);
+void			pixel_put(t_env *env, int x, int y, int color);
+void			burning_ship(t_env *env, int times);
+void			julia_set(t_complex c, int n, t_env *env);
+void			mandelbrot_set(t_env *env, int iter);
+void			draw_again(t_env *e);
+void			colors(t_env *env, int xy[2], int i, int iter);
 
 #endif

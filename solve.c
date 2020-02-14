@@ -6,13 +6,13 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:01:45 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 15:39:03 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:21:20 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	draw_again(t_env *e)
+void			draw_again(t_env *e)
 {
 	mlx_clear_window(e->mlx, e->win);
 	mlx_string_put(e->mlx, e->win, 10, 5, 0xFFFFFF, \
@@ -31,21 +31,14 @@ void	draw_again(t_env *e)
 						ft_strjoin("Mouse Y: ", \
 						ft_itoa(e->mouse.y)));
 	if (e->proj_num == 1)
-	{
-		koch_curve(e, (t_coord){600*e->zoom, 500*e->zoom},
-					(t_coord){400*e->zoom, 500*e->zoom}, e->iter);
-		koch_curve(e, (t_coord){400*e->zoom, 500*e->zoom},
-					(t_coord){500*e->zoom, 300*e->zoom}, e->iter);
-		koch_curve(e, (t_coord){500*e->zoom, 300*e->zoom},
-					(t_coord){600*e->zoom, 500*e->zoom}, e->iter);
-	}
+		burning_ship(e, e->iter);
 	else if (e->proj_num == 2)
 		julia_set(e->julia, e->iter, e);
 	else
 		mandelbrot_set(e, e->iter);
 }
 
-void	colors(t_env *env, int xy[2], int i, int iter)
+void			colors(t_env *env, int xy[2], int i, int iter)
 {
 	if (i > iter)
 		pixel_put(env, xy[0], xy[1], 0xff6600);

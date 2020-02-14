@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 16:24:33 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 16:32:43 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			event_key(int keycode, t_env *e)
 		e->iter -= 2;
 	if (keycode == A)
 		e->pos.x += 0.3 / e->zoom;
-	if (keycode == UP & e->iter < 200)
+	if (keycode == UP & e->iter < 1000)
 		e->iter += 2;
 	if (keycode == W)
 		e->pos.y += 0.3 / e->zoom;
@@ -54,13 +54,13 @@ int		mouse_move(int x, int y, t_env *e)
 	{
 		e->mouse.x = x;
 		e->mouse.y = y;
-	}
-	if (e->julia_var == 1 && e->proj_num == 2)
-	{
-		e->mouse.x = -1.0 * x / (WIDTH / 2);
-		e->mouse.y = 1.0 * y / (HEIGHT / 2);
-		e->julia.x = e->mouse.x;
-		e->julia.y = e->mouse.y;
+		if (e->julia_var == 1 && e->proj_num == 2)
+		{
+			e->mouse.x = -1.0 * x / (WIDTH / 2);
+			e->mouse.y = 1.0 * y / (HEIGHT / 2);
+			e->julia.x = e->mouse.x;
+			e->julia.y = e->mouse.y;
+		}
 	}
 	draw_again(e);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 15:25:50 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:05:30 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void		display_usage(void)
 	ft_putendl("fractal names:");
 	ft_putendl("--> Mandelbrot");
 	ft_putendl("--> Julia");
-	ft_putendl("--> Koch");
+	ft_putendl("--> Ship");
 }
 
 static int		validate_input(t_env *env, char *av)
 {
-	if (ft_strcmp(av, "Koch") == 0)
+	if (ft_strcmp(av, "Ship") == 0)
 	{
 		env->proj_num = 1;
 		return (1);

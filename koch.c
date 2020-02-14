@@ -6,60 +6,60 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/13 15:24:56 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:04:51 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void		draw_line(t_env *e, t_coord src, t_coord dst)
+static t_mandel		reset_z(t_mandel z)
 {
-	t_coord		delta;
-	float		s[2];
-	float		err[2];
-
-	delta.x = ft_abs(dst.x - src.x);
-	delta.y = ft_abs(dst.y - src.y);
-	s[0] = (src.x < dst.x ? 1 : -1);
-	s[1] = (src.y < dst.y ? 1 : -1);
-	err[0] = (delta.x > delta.y ? delta.x : -delta.y) / 2;
-	while (src.x != dst.x || src.y != dst.y)
-	{
-		pixel_put(e, src.x, src.y, 0x6ffff);
-		err[1] = err[0];
-		if (err[1] > -delta.x)
-		{
-			err[0] -= delta.y;
-			src.x += s[0];
-		}
-		if (err[1] < delta.y)
-		{
-			err[0] += delta.x;
-			src.y += s[1];
-		}
-	}
+	z.newim = 0;
+	z.newre = 0;
+	z.oldim = 0;
+	z.oldre = 0;
+	return (z);
 }
 
-void	koch_curve(t_env *env, t_coord p1, t_coord p2, int times)
+static t_mandel		calc(t_mandel z, t_mandel p)
 {
-	t_coord		p3;
-	t_coord		p4;
-	t_coord		p5;
-	double		theta;
+	z.oldre = z.newre;
+	z.oldim = z.newim;
+	z.newre = fabs(z.oldre * z.oldre - z.oldim * z.oldim + p.re);
+	z.newim = fabs(2 * z.oldre * z.oldim + p.im);
+	return (z);
+}
 
-	theta = M_PI / 3;
-	if (times > 0)
+static	t_mandel	p_calc(t_env *env, t_mandel p, int xy[2])
+{
+	p.re = 2.5 * (xy[0] - WIDTH / 2) / (0.5 * env->zoom * WIDTH) + env->pos.x;
+	p.im = 2.5 * (xy[1] - HEIGHT / 2) / (0.5 * env->zoom * HEIGHT) + env->pos.y;
+	return (p);
+}
+
+void				burning_ship(t_env *env, int iter)
+{
+	int					i;
+	int					xy[2];
+	t_mandel			p;
+	t_mandel			z;
+
+	xy[1] = 0;
+	while (xy[1]++ < HEIGHT)
 	{
-		p3 = (t_coord){((2 * p1.x + p2.x) / 3), ((2 * p1.y + p2.y) / 3)};
-		p5 = (t_coord){((2 * p2.x + p1.x) / 3), ((2 * p2.y + p1.y) / 3)};
-		p4 = (t_coord){(p3.x + (p5.x - p3.x) * cos(theta) + (p5.y - p3.y)
-		* sin(theta)), (p3.y - (p5.x - p3.x) * sin(theta) + (p5.y - p3.y)
-		* cos(theta))};
-		koch_curve(env, p1, p3, times - 1);
-		koch_curve(env, p3, p4, times - 1);
-		koch_curve(env, p4, p5, times - 1);
-		koch_curve(env, p5, p2, times - 1);
+		xy[0] = 0;
+		while (xy[0]++ < WIDTH)
+		{
+			p = p_calc(env, p, xy);
+			z = reset_z(z);
+			i = 0;
+			while (i++ < iter)
+			{
+				z = calc(z, p);
+				if ((z.newre * z.newre + z.newim * z.newim) > 4)
+					break ;
+			}
+			colors(env, xy, i, iter);
+		}
 	}
-	else
-		draw_line(env, p1, p2);
 }
