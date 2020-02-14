@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/14 17:24:28 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:33:05 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 # define SCROLL_DOWN 5
 # define UP 126
 # define DOWN 125
-# define D 2
-# define A 0
+# define RIGHT 124
+# define LEFT 123
 # define W 13
 # define S 1
 # define K 40
 # define L 37
 # define R 15
-# define WHITE 0xFFFFFF
 
 typedef struct	s_mandel
 {

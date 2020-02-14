@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/14 16:32:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:30:56 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int			event_key(int keycode, t_env *e)
 {
 	if (keycode == ESC)
 		exit(0);
-	if (keycode == D)
+	if (keycode == RIGHT)
 		e->pos.x -= 0.3 / e->zoom;
-	if (keycode == DOWN && e->iter != 1)
+	if (keycode == S && e->iter != 1)
 		e->iter -= 2;
-	if (keycode == A)
+	if (keycode == LEFT)
 		e->pos.x += 0.3 / e->zoom;
-	if (keycode == UP & e->iter < 1000)
+	if (keycode == W & e->iter < 1000)
 		e->iter += 2;
-	if (keycode == W)
+	if (keycode == UP)
 		e->pos.y += 0.3 / e->zoom;
-	if (keycode == S)
+	if (keycode == DOWN)
 		e->pos.y -= 0.3 / e->zoom;
 	if (keycode == R)
 	{
