@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/14 17:35:10 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:52:22 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,14 @@ typedef struct	s_env
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
+	int				*img_data;
+	int				size_line;
+	int				endian;
 	int				iter;
 	int				proj_num;
 	int				julia_var;
+	int				start;
 	t_mandel		mandel;
 	t_complex		julia;
 	t_complex		pos;
@@ -72,6 +77,8 @@ void			burning_ship(t_env *env, int times);
 void			julia_set(t_complex c, int n, t_env *env);
 void			mandelbrot_set(t_env *env, int iter);
 void			draw_again(t_env *e);
+void			init_img(t_env *env);
 void			colors(t_env *env, int xy[2], int i, int iter);
+void			pix_to_img(t_env *env, int xy[2], int color);
 
 #endif
