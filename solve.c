@@ -6,23 +6,23 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:01:45 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/17 17:49:30 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:00:45 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// void			init_img(t_env *env)
-// {
-// 	int     bpp;
-// 	int		size_line;
-// 	int     endian;
+void			init_img(t_env *env)
+{
+	int     bpp;
+	int		size_line;
+	int     endian;
 
-// 	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-// 	env->img_data = (int *)mlx_get_data_addr(env->img, &bpp, &size_line, &endian);
-// 	// env->size_line = WIDTH / 4;
-// 	env->endian = endian;
-// }
+	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
+	env->img_data = (int *)mlx_get_data_addr(env->img, &bpp, &size_line, &endian);
+	// env->size_line = WIDTH / 4;
+	env->endian = endian;
+}
 
 void			draw_again(t_env *e)
 {
@@ -100,6 +100,46 @@ void			pix_to_img(t_env *env, int xy[2], int color)
     	env->img_data[pixel + 3] = color;
     }
 }
+
+// void		*render_thread(void *m)
+// {
+// 	t_thread	*t;
+// 	int			x;
+// 	int			y;
+
+// 	t = (t_thread *)m;
+// 	y = HEIGHT / THREADS * t->id;
+// 	while (y++ < HEIGHT / THREADS * (t->id + 1))
+// 	{
+// 		x = 0;
+// 		while (x++ < WIDTH)
+// 		{
+// 			*(t->mlx->data + y * WIDTH + x) =
+// 				t->mlx->fractal->pixel(x, y, &t->mlx->viewport, t->mlx);
+// 		}
+// 	}
+// 	return (NULL);
+// }
+
+// void		render(t_env *env)
+// {
+// 	int			i;
+// 	t_render	*r;
+
+// 	i = 0;
+// 	r = &env->render;
+// 	while (i++ < THREADS)
+// 	{
+// 		r->args[i].id = i;
+// 		r->args[i].mlx = env;
+// 		pthread_create(r->threads + i, NULL, render_thread, &(r->args[i]));
+// 	}
+// 	i = 0;
+// 	while (i++ < THREADS)
+// 		pthread_join(r->threads[i], NULL);
+// 	draw_again(env);
+// }
+
 
 void			pixel_put(t_env *env, int x, int y, int color)
 {

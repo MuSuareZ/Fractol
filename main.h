@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/17 17:52:22 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:58:02 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <pthread.h>
 # include "mlx.h"
 # include "libft/libft.h"
 
@@ -33,6 +34,7 @@
 # define K 40
 # define L 37
 # define R 15
+# define THREADS 8
 
 typedef struct	s_mandel
 {
@@ -50,6 +52,18 @@ typedef struct	s_complex
 	double y;
 }				t_complex;
 
+// typedef struct		s_thread
+// {
+// 	int				id;
+// 	t_env			*mlx;
+// }					t_thread;
+
+// typedef struct		s_render
+// {
+// 	pthread_t		threads[THREADS];
+// 	t_thread		args[THREADS];
+// }					t_render;
+
 typedef struct	s_env
 {
 	void			*mlx;
@@ -62,6 +76,7 @@ typedef struct	s_env
 	int				proj_num;
 	int				julia_var;
 	int				start;
+	// t_render		render;
 	t_mandel		mandel;
 	t_complex		julia;
 	t_complex		pos;
