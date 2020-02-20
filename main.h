@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/19 17:58:02 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:57:12 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,37 +52,36 @@ typedef struct	s_complex
 	double y;
 }				t_complex;
 
-// typedef struct		s_thread
-// {
-// 	int				id;
-// 	t_env			*mlx;
-// }					t_thread;
-
-// typedef struct		s_render
-// {
-// 	pthread_t		threads[THREADS];
-// 	t_thread		args[THREADS];
-// }					t_render;
+typedef struct	s_image
+{
+	void		*image;
+	char		*ptr;
+	int			bpp;
+	int			line_s;
+	int			endian;
+}				t_image;
 
 typedef struct	s_env
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
-	int				*img_data;
-	int				size_line;
-	int				endian;
+	t_image			img;
 	int				iter;
 	int				proj_num;
 	int				julia_var;
 	int				start;
-	// t_render		render;
 	t_mandel		mandel;
 	t_complex		julia;
 	t_complex		pos;
 	t_complex		mouse;
 	long double		zoom;
 }				t_env;
+
+typedef struct	s_targs
+{
+	t_env		*env;
+	int			quad;
+}				t_targs;
 
 int				event_mouse(int button, int x, int y, t_env *e);
 int				event_key(int keycode, t_env *e);
@@ -92,7 +91,11 @@ void			burning_ship(t_env *env, int times);
 void			julia_set(t_complex c, int n, t_env *env);
 void			mandelbrot_set(t_env *env, int iter);
 void			draw_again(t_env *e);
+void			img_pixel_put(t_env *env, double x, double y, int color);
+void			draw_info(t_env *e);
 void			init_img(t_env *env);
+void			clear_img(t_env *env);
+void			render(t_env *env);
 void			colors(t_env *env, int xy[2], int i, int iter);
 void			pix_to_img(t_env *env, int xy[2], int color);
 

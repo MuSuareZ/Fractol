@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/17 16:28:52 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:55:03 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int				main(int ac, char **av)
 	if (ac == 2 && validate_input(env, av[1]) == 1)
 	{
 		init_env(env);
+		init_img(env);
 		env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "msuarez- FRACTOL");
 		if (env->win == (void *)0)
 			return (-1);
