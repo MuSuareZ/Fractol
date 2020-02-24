@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/20 16:55:03 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:06:43 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		init_env(t_env *env)
 	env->pos.x = 0;
 	env->pos.y = 0;
 	env->iter = 100;
+	env->color_num = 1;
 	env->julia_var = 0;
 	env->julia.x = -0.8;
 	env->julia.y = 0.156;

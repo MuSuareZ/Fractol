@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/20 18:03:58 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:50:20 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int			event_key_next(int keycode, t_env *e)
 {
+	if (keycode == COLOR)
+		e->color_num = 1;
+	if (keycode == RAINBOW)
+		e->color_num = 2;
+	if (keycode == GREYSCALE)
+		e->color_num = 3;
 	if (keycode == R)
 	{
 		e->zoom = 1.2;

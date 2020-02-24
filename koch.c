@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/17 16:09:35 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:48:58 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void				burning_ship(t_env *env, int iter)
 				if ((z.newre * z.newre + z.newim * z.newim) > 4)
 					break ;
 			}
-			colors(env, xy, i, iter);
+			img_pixel_put(env, xy[0], xy[1], select_color(env, i));
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/20 17:57:12 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:10:20 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define HEIGHT 1000
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
+# define GREYSCALE 20
+# define RAINBOW 19
+# define COLOR 18
 # define UP 126
 # define DOWN 125
 # define RIGHT 124
@@ -34,7 +37,6 @@
 # define K 40
 # define L 37
 # define R 15
-# define THREADS 8
 
 typedef struct	s_mandel
 {
@@ -61,15 +63,30 @@ typedef struct	s_image
 	int			endian;
 }				t_image;
 
+typedef struct	s_pixel
+{
+	t_complex	c;
+	long		i;
+}				t_pixel;
+
+typedef struct	s_rgb
+{
+	int				red;
+	int				green;
+	int				blue;
+}				t_rgb;
+
 typedef struct	s_env
 {
 	void			*mlx;
 	void			*win;
-	t_image			img;
 	int				iter;
+	int				color_num;
 	int				proj_num;
 	int				julia_var;
 	int				start;
+	t_image			img;
+	t_pixel			*data;
 	t_mandel		mandel;
 	t_complex		julia;
 	t_complex		pos;
@@ -77,16 +94,9 @@ typedef struct	s_env
 	long double		zoom;
 }				t_env;
 
-typedef struct	s_targs
-{
-	t_env		*env;
-	int			quad;
-}				t_targs;
-
 int				event_mouse(int button, int x, int y, t_env *e);
 int				event_key(int keycode, t_env *e);
 int				mouse_move(int x, int y, t_env *e);
-void			pixel_put(t_env *env, int x, int y, int color);
 void			burning_ship(t_env *env, int times);
 void			julia_set(t_complex c, int n, t_env *env);
 void			mandelbrot_set(t_env *env, int iter);
@@ -94,9 +104,7 @@ void			draw_again(t_env *e);
 void			img_pixel_put(t_env *env, double x, double y, int color);
 void			draw_info(t_env *e);
 void			init_img(t_env *env);
+int				select_color(t_env *env, int i);
 void			clear_img(t_env *env);
-void			render(t_env *env);
-void			colors(t_env *env, int xy[2], int i, int iter);
-void			pix_to_img(t_env *env, int xy[2], int color);
 
 #endif
