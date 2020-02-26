@@ -6,16 +6,11 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:01:45 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/24 16:01:51 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:00:14 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-/*
-**	idx() - Useful function to get the row, col value from a flattened
-**	2D matrix. Dim is the 'width' of the matrix...
-*/
 
 void			draw_again(t_env *e)
 {
