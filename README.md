@@ -38,8 +38,8 @@ any arguments to see its usage!**
 Once Julia Variation is active, you can move the mouse inside the screen and change its real and imaginary values according
 to the mouse position.
 
-![Image of Subject](https://github.com/MuSuareZ/FDF/blob/master/img/mandelbrot.png)
-![Image of Subject](https://github.com/MuSuareZ/FDF/blob/master/img/julia.png)
-![Image of Subject](https://github.com/MuSuareZ/FDF/blob/master/img/ship.png)
+![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/mandelbrot.png)
+![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/julia.png)
+![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/ship.png)
 
 ***PS: You should always ignore the quotation marks, they are just comments of what you should input***
