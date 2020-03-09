@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:33 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/24 16:50:20 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/03/09 18:06:19 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int			event_key_next(int keycode, t_env *e)
 		e->julia.x = -0.8;
 		e->julia.y = 0.156;
 	}
-	if (keycode == L && e->julia_var == 1)
-		e->julia_var = 0;
-	if (keycode == K && e->julia_var == 0)
-		e->julia_var = 1;
+	// Basic swapping between true or false (1 or 0), in this case ON or OFF
+	if (keycode == K && e->proj_num == 2)
+		e->julia_var = 1 - e->julia_var;
 	draw_again(e);
 	return (1);
 }

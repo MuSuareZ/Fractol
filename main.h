@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:55:24 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/26 17:57:11 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:47:52 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define W 13
 # define S 1
 # define K 40
-# define L 37
 # define R 15
+# define THREADS 8
 
 typedef struct	s_mandel
 {
@@ -84,6 +84,7 @@ typedef struct	s_env
 	int				proj_num;
 	int				julia_var;
 	int				start;
+	int				thread_id;
 	t_image			img;
 	t_pixel			*data;
 	t_mandel		mandel;
@@ -96,9 +97,9 @@ typedef struct	s_env
 int				event_mouse(int button, int x, int y, t_env *e);
 int				event_key(int keycode, t_env *e);
 int				mouse_move(int x, int y, t_env *e);
-void			burning_ship(t_env *env, int times);
-void			julia_set(t_complex c, int n, t_env *env);
-void			mandelbrot_set(t_env *env, int iter);
+void			*burning_ship(void *env_ptr);
+void			*julia_set(void *env_ptr);
+void			*mandelbrot_set(void *env_ptr);
 void			draw_again(t_env *e);
 void			img_pixel_put(t_env *env, double x, double y, int color);
 void			draw_info(t_env *e);

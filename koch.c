@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:51:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/24 16:48:58 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:49:39 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ static	t_mandel	p_calc(t_env *env, t_mandel p, int xy[2])
 	return (p);
 }
 
-void				burning_ship(t_env *env, int iter)
+void				*burning_ship(void *env_ptr)
 {
+	t_env				*env;
 	int					i;
 	int					xy[2];
 	t_mandel			p;
 	t_mandel			z;
 
-	xy[1] = 0;
-	while (xy[1]++ < HEIGHT)
+	env = (t_env*)env_ptr;
+	xy[1] = env->thread_id;
+	while (xy[1] < HEIGHT)
 	{
 		xy[0] = 0;
 		while (xy[0]++ < WIDTH)
@@ -53,7 +55,7 @@ void				burning_ship(t_env *env, int iter)
 			p = p_calc(env, p, xy);
 			z = reset_z(z);
 			i = 0;
-			while (i++ < iter)
+			while (i++ < env->iter)
 			{
 				z = calc(z, p);
 				if ((z.newre * z.newre + z.newim * z.newim) > 4)
@@ -61,5 +63,7 @@ void				burning_ship(t_env *env, int iter)
 			}
 			img_pixel_put(env, xy[0], xy[1], select_color(env, i));
 		}
+		xy[1] += THREADS;
 	}
+	return (NULL);
 }

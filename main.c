@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 13:54:25 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/24 17:06:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:32:20 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		init_env(t_env *env)
 	env->mandel.re = 0;
 	env->zoom = 1.2;
 	env->start = 0;
+	env->thread_id = 0;
 }
 
 static void		display_usage(void)

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:22:39 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/24 16:48:55 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:53:56 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,24 @@ static t_mandel		calc(t_mandel z, t_mandel p)
 	return (z);
 }
 
-static	t_mandel	p_calc(t_env *env, t_mandel p, int xy[2])
+static t_mandel		p_calc(t_env *env, t_mandel p, int xy[2])
 {
 	p.re = 2.5 * (xy[0] - WIDTH / 2) / (0.5 * env->zoom * WIDTH) + env->pos.x;
 	p.im = 2.5 * (xy[1] - HEIGHT / 2) / (0.5 * env->zoom * HEIGHT) + env->pos.y;
 	return (p);
 }
 
-void				mandelbrot_set(t_env *env, int iter)
+void				*mandelbrot_set(void *env_ptr)
 {
-	int					i;
-	int					xy[2];
-	t_mandel			p;
-	t_mandel			z;
+	t_env		*env;
+	int			xy[2];
+	t_mandel	p;
+	t_mandel	z;
+	int			i;
 
-	xy[1] = 0;
-	while (xy[1]++ < HEIGHT)
+	env = (t_env*)env_ptr;
+	xy[1] = env->thread_id;
+	while (xy[1] < HEIGHT)
 	{
 		xy[0] = 0;
 		while (xy[0]++ < WIDTH)
@@ -53,7 +55,7 @@ void				mandelbrot_set(t_env *env, int iter)
 			p = p_calc(env, p, xy);
 			z = reset_z(z);
 			i = 0;
-			while (i++ < iter)
+			while (i++ < env->iter)
 			{
 				z = calc(z, p);
 				if ((z.newre * z.newre + z.newim * z.newim) > 4)
@@ -61,5 +63,7 @@ void				mandelbrot_set(t_env *env, int iter)
 			}
 			img_pixel_put(env, xy[0], xy[1], select_color(env, i));
 		}
+		xy[1] += THREADS;
 	}
+	return (NULL);
 }
