@@ -9,6 +9,8 @@ in a new window.
 ***REALLY IMPORTANT: You MUST have the graphical library used in the whole project called MinilibX installed and a MacOS in order to
 use the keys to interact with the shapes!***
 
+***If you would like to know how to install MinilibX, check this https://github.com/gcamerli/minilibx for clear instructions and system requirements***
+
 > git clone "my repo URL" "your folder path"
 
 You can compile it through a Makefile in the root of my Repo
