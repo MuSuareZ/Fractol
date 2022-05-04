@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 14:08:47 by msuarez-          #+#    #+#             */
-/*   Updated: 2019/10/21 14:08:48 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:49:09 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_strtrim(char const *s)
 	if (!s)
 		return (NULL);
 	start = 0;
-	while (WHITESPACES(s[start]))
+	while (s[start] == ' ' || s[start] == '\t' || s[start] == '\n')
 		start++;
 	if (s[start] == '\0')
 		return (ft_strdup(s + start));
 	len = ft_strlen(s) - 1;
-	while (WHITESPACES(s[len]) && len > 0)
+	while ((s[len] == ' ' || s[len] == '\t' || s[len] == '\n') && len > 0)
 		len--;
 	return (ft_strsub(s, start, len - start + 1));
 }

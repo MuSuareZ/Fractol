@@ -6,7 +6,7 @@
 #    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 17:07:31 by msuarez-          #+#    #+#              #
-#    Updated: 2020/02/06 16:52:15 by msuarez-         ###   ########.fr        #
+#    Updated: 2019/12/05 17:57:59 by msuarez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS=ft_strlcat.c ft_strnew.c ft_strcpy.c ft_strcat.c ft_strchr.c \
 	ft_putchar.c ft_putchar_fd.c ft_putnbr.c ft_putnbr_fd.c ft_putstr.c \
 	ft_putstr_fd.c ft_putendl.c ft_putendl_fd.c ft_strsplit.c \
 	ft_isspace.c ft_intlen.c ft_abs.c ft_lstnew.c ft_lstdelone.c \
-	ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c
+	ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c get_next_line.c
 
 OBJECTS= ft_strlcat.o ft_strnew.o ft_strcpy.o ft_strcat.o ft_strchr.o \
 	ft_strdup.o ft_strncat.o ft_strncpy.o ft_strnstr.o ft_strstr.o \
@@ -38,11 +38,11 @@ OBJECTS= ft_strlcat.o ft_strnew.o ft_strcpy.o ft_strcat.o ft_strchr.o \
 	ft_putchar.o ft_putchar_fd.o ft_putnbr.o ft_putnbr_fd.o ft_putstr.o \
 	ft_putstr_fd.o ft_putendl.o ft_putendl_fd.o ft_strsplit.o \
 	ft_isspace.o ft_intlen.o ft_abs.o ft_lstnew.o ft_lstdelone.o \
-	ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o
+	ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o get_next_line.o
 
 all: $(NAME)
 
-$(NAME): $(SRCS) libft.h
+$(NAME): $(SRCS) libft.h get_next_line.h
 	@gcc -Wall -Wextra -Werror -c $(SRCS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)

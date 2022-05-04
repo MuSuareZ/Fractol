@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include "mlx.h"
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 # define ESC 53
 # define WIDTH 1000

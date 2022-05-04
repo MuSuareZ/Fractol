@@ -1,40 +1,42 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/12/09 14:48:23 by msuarez-          #+#    #+#              #
-#    Updated: 2020/03/09 16:29:42 by msuarez-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME		:=	fractal
 
-NAME = fractol
+SOURCES		:=	$(wildcard scripts/*.c)
+OBJECTS		:=	$(SOURCES:.c=.o)
 
-SRC = main.c key.c solve.c koch.c julia.c mandelbrot.c image.c color.c
+LIBFT_PATH	:= ./libft
+LIBFT		:= -I $(LIBFT_PATH) -L $(LIBFT_PATH) -l ft
 
-OBJECTS = $(subst .c,.o,$(SRC))
+FLAGS		:= -Wall -Wextra -Werror
+INCLUDES	:= -I ./scripts
 
-LIBFT = libft/libft.a
+FLAGS		+= $(INCLUDES) $(LIBFT) -framework OpenGL -framework AppKit
 
-.PHONY = all clean fclean clean re
+MSG = \033[38;5;214m
+END = \033[0m
 
-FLAGS = -Wall -Wextra -Werror
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-		@make -C libft/
-		@cc $(FLAGS) -I/usr/local/include $(SRC) $(LIBFT) \
-		-L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME): $(LIBFT_PATH)/libft.a $(OBJECTS)
+	@gcc $(OBJECTS) -o $(NAME) $(FLAGS) ./mlx/libmlx.a
+	@echo "$(MSG)Done!$(END)"
+
+$(LIBFT_PATH)/libft.a:
+	@make -C libft
+
+%.o: %.c
+	@printf "gcc %25s ==> %s\n" $< $@
+	@gcc $(FLAGS) -w -c $< -o $@
 
 clean:
-		@make clean -C libft/
-		@/bin/rm -f $(OBJECTS)
+	@make -C libft clean
+	@rm -f $(OBJECTS)
+	@echo "$(MSG)Objects removed!$(END)"
 
 fclean: clean
-		@/bin/rm -f $(LIBFT)
-		@/bin/rm -f $(NAME)
+	@make -C libft fclean
+	@rm -f $(NAME)
+	@echo "$(MSG)Targets removed!$(END)"
 
 re: fclean all

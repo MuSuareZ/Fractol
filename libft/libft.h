@@ -6,13 +6,12 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:59 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/02/14 17:20:09 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:45:39 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define WHITESPACES(x) x == ' ' || x == '\t' || x == '\n'
 # define INTMIN -2147483648
 # define INTMAX 2147483647
 # include <string.h>
@@ -61,6 +60,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
+int				get_next_line(const int fd, char **line);
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
