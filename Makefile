@@ -1,4 +1,4 @@
-NAME		:=	fractal
+NAME		:=	fractol
 
 SOURCES		:=	$(wildcard scripts/*.c)
 OBJECTS		:=	$(SOURCES:.c=.o)
