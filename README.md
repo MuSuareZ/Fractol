@@ -6,6 +6,8 @@ in a new window.
 
 # How to use it?
 
+04/05/2022: I took the time to add a standalone version of MinilibX for MacOSX so all you gotta do is jump into testing it :) No installing MinilibX anymore
+
 ***REALLY IMPORTANT: You MUST have the graphical library used in the whole project called MinilibX installed and a MacOS in order to
 use the keys to interact with the shapes!***
 
