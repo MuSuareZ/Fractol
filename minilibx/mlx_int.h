@@ -14,7 +14,6 @@
 #define FONT_WIDTH	10
 #define	FONT_HEIGHT	20
 
-#include <OpenGL/gl3.h>
 
 typedef int (*func_t)();
 

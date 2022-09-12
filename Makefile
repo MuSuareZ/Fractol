@@ -1,42 +1,82 @@
-NAME		:=	fractol
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/03/04 15:37:03 by msuarez-          #+#    #+#              #
+#    Updated: 2022/09/12 22:51:33 by msuarez-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SOURCES		:=	$(wildcard scripts/*.c)
-OBJECTS		:=	$(SOURCES:.c=.o)
+NAME	= fractol
+OS		= $(shell uname)
 
-LIBFT_PATH	:= ./libft
-LIBFT		:= -I $(LIBFT_PATH) -L $(LIBFT_PATH) -l ft
+# directories
+SRCDIR	= ./src
+INCDIR	= ./includes
+OBJDIR	= ./obj
 
-FLAGS		:= -Wall -Wextra -Werror
-INCLUDES	:= -I ./scripts
+# src / obj files
+SRC		= color.c \
+		  image.c \
+		  julia.c \
+		  key.c \
+		  koch.c \
+		  main.c \
+		  mandelbrot.c \
+		  solve.c
 
-FLAGS		+= $(INCLUDES) $(LIBFT) -framework OpenGL -framework AppKit
+OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
-MSG = \033[38;5;214m
-END = \033[0m
+# compiler
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re
+# mlx library
+ifeq ($(OS), Linux)
+	MLXDIR	= ./minilibx_x11
+	MLX_LNK	= -l mlx -lXext -lX11
+else
+	MLXDIR	= ./minilibx
+	MLX_LNK	= -l mlx -framework OpenGL -framework AppKit
+endif
 
-all: $(NAME)
+MLX_LNK	+= -L $(MLXDIR)
+MLX_INC	= -I $(MLXDIR)
+MLX_LIB	= $(addprefix $(MLX)/,mlx.a)
 
-$(NAME): $(LIBFT_PATH)/libft.a $(OBJECTS)
-	@gcc $(OBJECTS) -o $(NAME) $(FLAGS) ./mlx/libmlx.a
-	@echo "$(MSG)Done!$(END)"
+# ft library
+FTDIR	= ./libft
+FT_LIB	= $(addprefix $(FTDIR)/,libft.a)
+FT_INC	= -I $(FTDIR)
+FT_LNK	= -L $(FTDIR) -l ft
 
-$(LIBFT_PATH)/libft.a:
-	@make -C libft
+all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
 
-%.o: %.c
-	@printf "gcc %25s ==> %s\n" $< $@
-	@gcc $(FLAGS) -w -c $< -o $@
+obj:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o:$(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+
+$(FT_LIB):
+	@make -C $(FTDIR)
+
+$(MLX_LIB):
+	@make -C $(MLXDIR)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
-	@make -C libft clean
-	@rm -f $(OBJECTS)
-	@echo "$(MSG)Objects removed!$(END)"
+	rm -rf $(OBJDIR)
+	make -C $(FTDIR) clean
+	make -C $(MLXDIR) clean
 
 fclean: clean
-	@make -C libft fclean
-	@rm -f $(NAME)
-	@echo "$(MSG)Targets removed!$(END)"
+	rm -f $(NAME)
+	make -C $(FTDIR) fclean
 
 re: fclean all
