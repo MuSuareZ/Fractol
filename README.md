@@ -6,12 +6,7 @@ in a new window.
 
 # How to use it?
 
-04/05/2022: I took the time to add a standalone version of MinilibX for MacOSX so all you gotta do is jump into testing it :) No installing MinilibX anymore
-
-***REALLY IMPORTANT: You MUST have the graphical library used in the whole project called MinilibX installed and a MacOS in order to
-use the keys to interact with the shapes!***
-
-***If you would like to know how to install MinilibX, check this https://github.com/gcamerli/minilibx for clear instructions and system requirements***
+***PS: You should always ignore the quotation marks, they are just comments of what you should input***
 
 > git clone "my repo URL" "your folder path"
 
@@ -42,8 +37,16 @@ any arguments to see its usage!**
 Once Julia Variation is active, you can move the mouse inside the screen and change its real and imaginary values according
 to the mouse position.
 
+**Future implementations**
+
+09/12/2022: Added standalone version of MinilibX for Linux - Done
+
+- Add support for Linux keys - TBD
+
+04/05/2022: I took the time to add a standalone version of MinilibX for MacOSX - Done
+
+**Images**
+
 ![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/mandelbrot.png)
 ![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/julia.png)
 ![Image of Subject](https://github.com/MuSuareZ/Fractol/blob/master/img/ship.png)
-
-***PS: You should always ignore the quotation marks, they are just comments of what you should input***
